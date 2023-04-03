@@ -21,8 +21,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +48,16 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     private boolean hexEnabled = false;
     private boolean pendingNewline = false;
     private String newline = TextUtil.newline_crlf;
+
+    Button button1;
+    Button button2;
+    Button button3;
+    Button button4;
+    Button button5;
+    Button button6;
+    Button button7;
+    Button button8;
+    Button button9;
 
     /*
      * Lifecycle
@@ -135,10 +147,56 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
         sendText.addTextChangedListener(hexWatcher);
         sendText.setHint(hexEnabled ? "HEX mode" : "");
 
+        button1 = view.findViewById(R.id.button);
+        button2 = view.findViewById(R.id.button2);
+        button3 = view.findViewById(R.id.button3);
+        button4 = view.findViewById(R.id.button4);
+        button5 = view.findViewById(R.id.button5);
+        button6 = view.findViewById(R.id.button6);
+        button7 = view.findViewById(R.id.button7);
+        button8 = view.findViewById(R.id.button8);
+        button9 = view.findViewById(R.id.button9);
+
+        button1.setOnClickListener(cl);
+        button2.setOnClickListener(cl);
+        button3.setOnClickListener(cl);
+        button4.setOnClickListener(cl);
+        button5.setOnClickListener(cl);
+        button6.setOnClickListener(cl);
+        button7.setOnClickListener(cl);
+        button8.setOnClickListener(cl);
+        button9.setOnClickListener(cl);
+
         View sendBtn = view.findViewById(R.id.send_btn);
         sendBtn.setOnClickListener(v -> send(sendText.getText().toString()));
         return view;
     }
+    Button.OnClickListener cl = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (view == button1) {
+                send("Direction" + 1);
+            } else if (view == button2) {
+                send("Direction" + 2);
+            } else if (view == button3) {
+                send("Direction" + 3);
+            } else if (view == button4) {
+                send("Direction" + 4);
+            } else if (view == button5) {
+                send("Direction" + 5);
+            } else if (view == button6) {
+                send("Direction" + 6);
+            } else if (view == button7) {
+                send("Direction" + 7);
+            } else if (view == button8) {
+                send("Direction" + 8);
+            } else if (view == button9) {
+                send("Direction" + 9);
+            }
+        }
+    };
+
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
@@ -213,6 +271,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
                 data = TextUtil.fromHexString(msg);
             } else {
                 msg = str;
+                msg += "";
                 data = (str + newline).getBytes();
             }
             SpannableStringBuilder spn = new SpannableStringBuilder(msg + '\n');
