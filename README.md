@@ -21,3 +21,7 @@ This app includes UUIDs for widely used serial profiles:
 I got various requests asking for help with Android development or source code for my
 [Serial Bluetooth Terminal](https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal) app.
 Here you find a simplified version of my app.
+
+## PLUS
+It can communicate between Arduino and Ble.
+It was changed for remote adjustment of Arduino rc car.
